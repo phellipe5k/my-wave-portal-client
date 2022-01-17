@@ -1,13 +1,14 @@
+import { Image } from '@chakra-ui/react';
+import Auth from 'components/Auth';
+import Base from 'components/Base';
+import Header from 'components/Header';
 import Main from 'components/Main';
+import Home from 'Template/Home'
 
-const Home = () => {
+const Index = () => {
   return (
-    <Main
-      title="Next Js Boilerplate"
-      description="NextJS | Typescript | Storybook | Styled Components | Styled Icons | Jest | React Testing Libraries | Eslint | Prettier | PLOP | PWA"
-      illustrationSrc="/assets/motleyCrue.gif"
-    />
+    <Home />
   );
 };
 
-export default Home;
+export default Index;

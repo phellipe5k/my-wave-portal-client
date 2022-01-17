@@ -1,10 +1,11 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 import GlobalStyles from 'styles/global';
+import { ChakraProvider } from '@chakra-ui/react';
 
 const myApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <>
+    <ChakraProvider>
       <Head>
         <title>React Avançado - Boilerplate</title>
         <link
@@ -19,7 +20,7 @@ const myApp = ({ Component, pageProps }: AppProps) => {
       </Head>
       <GlobalStyles />
       <Component {...pageProps} />
-    </>
+    </ ChakraProvider>
   );
 };
 
