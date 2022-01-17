@@ -7,14 +7,14 @@ const myApp = ({ Component, pageProps }: AppProps) => {
   return (
     <ChakraProvider>
       <Head>
-        <title>React Avançado - Boilerplate</title>
+        <title>WavePortal</title>
         <link
           rel="shortcut icon"
-          href="https://reactavancado.com.br/img/icon-512.png"
+          href="assets/images/icon.png"
         />
         <link
           rel="apple-touch-icon"
-          href="https://reactavancado.com.br/img/icon-512.png"
+          href="assets/images/icon.png"
         />
         <link rel="manifest" href="/manifest.json" />
       </Head>
