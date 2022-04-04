@@ -21,7 +21,7 @@ export const InputWrapper = styled.div`
   margin-top: 10px;
   p {
     font-weight: bold;
-    color: #303030;
+    color: white;
   }
   input {
     font-size: 14px;
@@ -56,7 +56,4 @@ export const Connect = styled.section`
   justify-content: center;
   flex-direction: column;
   align-items: center;
-  button {
-    border: 1px solid #854BC1;
-  }
 `;

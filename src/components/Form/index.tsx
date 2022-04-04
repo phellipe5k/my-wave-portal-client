@@ -1,7 +1,8 @@
 import * as S from './style';
-import { Input, Text, RadioGroup, Stack, Button } from '@chakra-ui/react'
+import { Input, Text, RadioGroup, Stack } from '@chakra-ui/react'
+import { Button } from 'web3-components'
 import { useEffect, useState } from 'react';
-import Auth from 'components/Auth';
+import Auth from '../../components/Auth';
 type Props = {
   title?: string;
 };
@@ -84,14 +85,15 @@ const Form = ({ title = 'Form' }: Props) => {
             </Stack>
           </RadioGroup>
           </ S.InputWrapper>
-          <Button marginTop={"10px"} border={"1px solid #854BC1"} bgColor={'transparent'}
-          width="70%" height="40px" fontSize={"16px"} color='#854BC1'>Submit</Button>
+          <Button style={{ marginTop: '20px', width: '100%', height: '50px', fontSize: '14px' }} color="#080025" >
+            
+          </Button>
         </>
       ) : (
         <S.Connect onClick={ connectWallet } >
           
           <Auth>
-            <Button fontSize={11} bgColor="transparent" width="80%" height="40px" textColor="#854BC1">Connect my MetaMask Wallet</Button>
+            <Button.BorderGradient onClick={ connectWallet } glow='#F89D35' gradientColors={'#F89D35, #e73030' } width='80%' border='gradient' color='black'><span style={{ fontSize: '14px' }}>Login</span></Button.BorderGradient>
           </Auth>
          
         </S.Connect>

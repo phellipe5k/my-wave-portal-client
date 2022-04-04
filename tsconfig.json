@@ -1,30 +1,24 @@
 {
+  "extends": "ts-config-single-spa",
   "compilerOptions": {
+    "jsx": "preserve",
+    "declarationDir": "dist",
     "baseUrl": "src",
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
     "allowJs": true,
     "skipLibCheck": true,
-    "strict": true,
+    "strict": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve"
+    "isolatedModules": true
   },
+  "files": [
+    "src/my-wave-portal-my-wave-portal.tsx"
+  ],
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
+    "src/**/*"
   ],
   "exclude": [
-    "node_modules"
+    "src/**/*.test*"
   ]
 }

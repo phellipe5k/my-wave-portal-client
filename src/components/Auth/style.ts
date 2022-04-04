@@ -55,7 +55,6 @@ export const Login = styled.div`
 
         &:hover {
           span {
-            color: black
           }
         }
     `}

@@ -7,6 +7,7 @@ export const Container = styled.main`
   flex-direction: column;
   margin: 0 auto;
   padding: 1% 2%;
+  background-color: #080025;
 `;
 
 export const Title = styled.h1`

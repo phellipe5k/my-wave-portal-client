@@ -13,7 +13,7 @@ export const Title = styled.h1`
     letter-spacing: 4px;
     width: 50%;
     line-height: 70px;
-    color: #303030;
+    color: white;
 `;
 
 export const Subtitle = styled.h3`
@@ -23,7 +23,7 @@ export const Subtitle = styled.h3`
     width: 100%;
     margin-top: 20px;
     line-height: 30px;
-    color: #636363;
+    color: white;
 `;
 export const Fixed = styled.div`
     position: fixed;
