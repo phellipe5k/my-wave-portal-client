@@ -2,6 +2,8 @@ import * as S from './style';
 import { Input, Text, RadioGroup, Stack } from '@chakra-ui/react'
 import { Button } from 'web3-components'
 import { useEffect, useState } from 'react';
+import { ethers } from 'ethers';
+import abi from '../../utils/contracts/wavePortal.json';
 import Auth from '../../components/Auth';
 type Props = {
   title?: string;
@@ -25,6 +27,13 @@ const Form = ({ title = 'Form' }: Props) => {
         alert("Please, get MetaMask!");
         return;
       }
+      const provider = new ethers.providers.Web3Provider(ethereum);
+      const signer = provider.getSigner();
+      const address = '0x804d63BBe8C87d2b9d7f71A8Be7E35539edF0a74';
+      const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
+      let count = await wavePortalContract.getColorsMetrics();
+      console.log('THATS THE TOTAL WAVES COUNTED 11', await wavePortalContract)
+      console.log('THATS THE TOTAL WAVES COUNTED 22', count.toNumber())
       const accounts = await ethereum.request({ method: "eth_requestAccounts" });
       if (accounts) {
         setCurrentAccount(accounts[0]);
@@ -59,6 +68,7 @@ const Form = ({ title = 'Form' }: Props) => {
 
   useEffect(() => {
     isWalletInMeta();
+    connectWallet();
   }, [])
 
   return (
@@ -85,8 +95,22 @@ const Form = ({ title = 'Form' }: Props) => {
             </Stack>
           </RadioGroup>
           </ S.InputWrapper>
-          {/*@ts-ignore*/}
-          <Button.BorderGradient style={{ marginTop: '20px', width: '100%', height: '50px', fontSize: '14px' }} color="black" >
+          <Button.BorderGradient onClick={async () => {
+            const { ethereum } = window;
+
+            if (!ethereum) {
+              alert("Please, get MetaMask!");
+              return;
+            }
+            const provider = new ethers.providers.Web3Provider(ethereum);
+            const signer = provider.getSigner();
+            const address = '0x804d63BBe8C87d2b9d7f71A8Be7E35539edF0a74';
+            const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
+            await wavePortalContract.registerColor()
+          }} 
+          
+          //@ts-ignore
+          style={{ marginTop: '20px', width: '100%', height: '50px', fontSize: '14px' }} color="black" >
             Submit
           </Button.BorderGradient>
         </>
