@@ -7,7 +7,7 @@
     "build": "concurrently npm:build:*",
     "start": "webpack serve",
     "lint": "eslint src --ext js,ts,tsx",
-    "test": "cross-env BABEL_ENV=test jest",
+    "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
     "test:watch": "npm run test -- --watch",
     "storybook": "start-storybook -s ./public -p 6006",
     "build-storybook": "build-storybook -s ./public",

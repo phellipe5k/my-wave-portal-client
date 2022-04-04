@@ -13,8 +13,6 @@ import BuildspaceIcon from '../../assets/images/unicorn.png'
 const Home = () => {
   console.log('rerendered!!!!!!')
     const [hoverLogin, setHoverLogin] = useState(false);
-    const [counter, setCounter] = useState(0);
-    const [counter2, setCounter2] = useState(0);
   return (
     <Base>
     <S.Fixed>
@@ -23,13 +21,9 @@ const Home = () => {
     </S.Fixed>
     <Header />
     <S.Row>
-    <S.Title onClick={() => {
-      setCounter((n) => n + 1)
-      setCounter2((n) => n + 1)
-    }}>
-      {counter}
-        Do you want to see a magic?
-    <   S.Subtitle>Fill the form and get a chance to own a NFT!!</S.Subtitle>
+    <S.Title>
+        Do you want to <S.GradientText>see a magic?</S.GradientText>
+    <   S.Subtitle>Fill the form and get a chance to <S.GradientText>own a NFT!!</S.GradientText></S.Subtitle>
     </S.Title>
     <Form />
     </S.Row>

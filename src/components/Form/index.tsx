@@ -67,12 +67,12 @@ const Form = ({ title = 'Form' }: Props) => {
         <>
           <S.InputWrapper>
             <Text fontSize={"16px"}>Name: </Text>
-            <Input value={form.name} onChange={({ target }: { target: any }) => handleChange('name', target.value)} width={"100%"} height={"30px"} />
+            <Input minHeight="35" marginTop={5} value={form.name} onChange={({ target }: { target: any }) => handleChange('name', target.value)} width={"100%"} height={"30px"} />
           </ S.InputWrapper>
           
           <S.InputWrapper>
             <Text fontSize={"16px"}>Email: </Text>
-            <Input value={form.email} type={"email"} onChange={({ target }: { target: any }) => handleChange('email', target.value)}  width={"100%"} height={"30px"} />
+            <Input minHeight="35" marginTop={5} value={form.email} type={"email"} onChange={({ target }: { target: any }) => handleChange('email', target.value)}  width={"100%"} height={"30px"} />
           </ S.InputWrapper>
           
           <S.InputWrapper>
@@ -85,15 +85,16 @@ const Form = ({ title = 'Form' }: Props) => {
             </Stack>
           </RadioGroup>
           </ S.InputWrapper>
-          <Button style={{ marginTop: '20px', width: '100%', height: '50px', fontSize: '14px' }} color="#080025" >
-            
-          </Button>
+          {/*@ts-ignore*/}
+          <Button.BorderGradient style={{ marginTop: '20px', width: '100%', height: '50px', fontSize: '14px' }} color="black" >
+            Submit
+          </Button.BorderGradient>
         </>
       ) : (
         <S.Connect onClick={ connectWallet } >
           
           <Auth>
-            <Button.BorderGradient onClick={ connectWallet } glow='#F89D35' gradientColors={'#F89D35, #e73030' } width='80%' border='gradient' color='black'><span style={{ fontSize: '14px' }}>Login</span></Button.BorderGradient>
+            <Button.BorderGradient onClick={ connectWallet } glow=' #c43ad6' gradientColors={' #30CFD0, #c43ad6' } width='80%' border='gradient' color='black'><span style={{ fontSize: '14px' }}>Login</span></Button.BorderGradient>
           </Auth>
          
         </S.Connect>

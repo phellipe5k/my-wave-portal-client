@@ -24,6 +24,7 @@ export const InputWrapper = styled.div`
     color: white;
   }
   input {
+    color: white;
     font-size: 14px;
   }
 
