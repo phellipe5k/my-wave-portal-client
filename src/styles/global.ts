@@ -12,17 +12,15 @@ const GlobalStyles = createGlobalStyle`
   }
 
   html, body, #__next {
-    height: 100%;
   }
 
   body {
-    background-color: #080025;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: 'Poppins', sans-serif;
   }
 
   #__next {
     
-    background-color: #080025;
+    background-color: black;
   }
 `;
 

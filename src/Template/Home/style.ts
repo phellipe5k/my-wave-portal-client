@@ -14,7 +14,15 @@ export const Title = styled.h1`
     width: 50%;
     line-height: 70px;
     color: white;
+    
+  text-shadow: 0 0 80px rgb(192 219 255 / 35%), 0 0 32px rgb(65 120 255 / 24%);
 `;
+
+export const GradientText = styled.span`
+  background: linear-gradient(to right, #30CFD0, #c43ad6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+`
 
 export const Subtitle = styled.h3`
     font-size: 18px;

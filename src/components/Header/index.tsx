@@ -13,7 +13,7 @@ const Header = ({ title = 'Header' }: Props) => {
 
   return (
     <S.Container>
-      <S.Logo><S.Image src={ 'assets/images/icon_dark.png' } /></S.Logo>
+      {/*<S.Logo><S.Image src={ 'assets/images/icon_dark.png' } /></S.Logo> */}
       <S.Title>Welcome to WavePortal 👋</S.Title>
     </S.Container>
   );
