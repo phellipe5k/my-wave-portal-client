@@ -9,8 +9,7 @@
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true,
-    "noEmit": true
+    "isolatedModules": true
   },
   "files": [
     "src/my-wave-portal-my-wave-portal.tsx"

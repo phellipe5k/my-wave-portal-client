@@ -1,5 +1,0 @@
-#!/bin/sh
-. "$(dirname "$0")/_/husky.sh"
-
-npm start pretty-quick --staged && npm start concurrently npm:test npm:lint
-commit

@@ -96,7 +96,7 @@ const Form = ({ title = 'Form' }: Props) => {
           </RadioGroup>
           </ S.InputWrapper>
           <Button.BorderGradient onClick={async () => {
-            const { ethereum } = window;
+            const { ethereum }: any = window;
 
             if (!ethereum) {
               alert("Please, get MetaMask!");
