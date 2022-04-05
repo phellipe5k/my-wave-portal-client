@@ -13,6 +13,7 @@ const Form = ({ title = 'Form' }: Props) => {
   const [form, setForm] = useState({ name: '', email: '', color: '' });
   const [currentAccount, setCurrentAccount] = useState('');  
   const [isAuth, setIsAuth] = useState(false);
+  const [totalVotes, setTotalVotes] = useState(0);
 
   const handleChange = (field: string, value: string) => {
     setForm((v: any) => ({...v, [field]: value}))
@@ -29,11 +30,10 @@ const Form = ({ title = 'Form' }: Props) => {
       }
       const provider = new ethers.providers.Web3Provider(ethereum);
       const signer = provider.getSigner();
-      const address = '0x804d63BBe8C87d2b9d7f71A8Be7E35539edF0a74';
+      const address = '0x194aEf5baB84A468D3f9daC20C838510e53d7128';
       const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
-      let count = await wavePortalContract.getColorsMetrics();
-      console.log('THATS THE TOTAL WAVES COUNTED 11', await wavePortalContract)
-      console.log('THATS THE TOTAL WAVES COUNTED 22', count.toNumber())
+      let count = await wavePortalContract.getTotalColors();
+      setTotalVotes(count.toNumber());
       const accounts = await ethereum.request({ method: "eth_requestAccounts" });
       if (accounts) {
         setCurrentAccount(accounts[0]);
@@ -74,7 +74,7 @@ const Form = ({ title = 'Form' }: Props) => {
   return (
     <S.Container>
       { isAuth ? (
-        <>
+        <>{/*
           <S.InputWrapper>
             <Text fontSize={"16px"}>Name: </Text>
             <Input minHeight="35" marginTop={5} value={form.name} onChange={({ target }: { target: any }) => handleChange('name', target.value)} width={"100%"} height={"30px"} />
@@ -84,7 +84,7 @@ const Form = ({ title = 'Form' }: Props) => {
             <Text fontSize={"16px"}>Email: </Text>
             <Input minHeight="35" marginTop={5} value={form.email} type={"email"} onChange={({ target }: { target: any }) => handleChange('email', target.value)}  width={"100%"} height={"30px"} />
           </ S.InputWrapper>
-          
+        */}
           <S.InputWrapper>
             <Text fontSize={"16px"} >Select a color:</Text>
             <RadioGroup colorScheme="#854BC1" marginTop={"20px"} onChange={(v: any) => handleChange('color', v) } value={form.color}>
@@ -104,23 +104,29 @@ const Form = ({ title = 'Form' }: Props) => {
             }
             const provider = new ethers.providers.Web3Provider(ethereum);
             const signer = provider.getSigner();
-            const address = '0x804d63BBe8C87d2b9d7f71A8Be7E35539edF0a74';
+            const address = '0x194aEf5baB84A468D3f9daC20C838510e53d7128';
             const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
-            await wavePortalContract.registerColor()
+            await wavePortalContract.registerColor(form.color);
+            
+            let count = await wavePortalContract.getTotalColors();
+            setTotalVotes(count.toNumber());
+            console.log('Colors on blockchain: ', await wavePortalContract.getColors())
           }} 
           
           //@ts-ignore
           style={{ marginTop: '20px', width: '100%', height: '50px', fontSize: '14px' }} color="black" >
             Submit
           </Button.BorderGradient>
+          <span style={{ fontSize: '14px', color: 'white' }}>Total votes: {totalVotes}</span>
         </>
       ) : (
         <S.Connect onClick={ connectWallet } >
           
           <Auth>
-            <Button.BorderGradient onClick={ connectWallet } glow=' #c43ad6' gradientColors={' #30CFD0, #c43ad6' } width='80%' border='gradient' color='black'><span style={{ fontSize: '14px' }}>Login</span></Button.BorderGradient>
+            <Button.BorderGradient glow=' #c43ad6' gradientColors={' #30CFD0, #c43ad6' } width='80%' border='gradient' color='black'><span style={{ fontSize: '14px' }}>Login</span></Button.BorderGradient>
           </Auth>
          
+          <span style={{ fontSize: '14px', color: 'white' }}>Total votes: {totalVotes}</span>
         </S.Connect>
       )}
     </S.Container>
