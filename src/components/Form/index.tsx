@@ -60,7 +60,6 @@ const Form = ({ title = 'Form' }: Props) => {
       }
       const accounts = await ethereum.request({ method: "eth_accounts" });
       if (accounts.length == 0 ) {
-        console.log('Not connected to metamask');
         return;
       }
       setIsAuth(true);
@@ -109,11 +108,12 @@ const Form = ({ title = 'Form' }: Props) => {
             const signer = provider.getSigner();
             const address = '0x194aEf5baB84A468D3f9daC20C838510e53d7128';
             const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
-            await wavePortalContract.registerColor(form.color);
-            
+            const populate = await wavePortalContract.registerColor(form.color);
+           
+            await populate.wait();
+          
             let count = await wavePortalContract.getTotalColors();
             setTotalVotes(count.toNumber());
-            console.log('Colors on blockchain: ', await wavePortalContract.getColors())
           }} 
           
           //@ts-ignore
