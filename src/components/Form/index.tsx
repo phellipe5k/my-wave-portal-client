@@ -3,7 +3,8 @@ import { Input, Text, RadioGroup, Stack } from '@chakra-ui/react'
 import { Button } from 'web3-components'
 import { useEffect, useState } from 'react';
 import { ethers } from 'ethers';
-import abi from '../../utils/contracts/wavePortal.json';
+//@ts-ignore
+import abi from 'utils/contracts/wavePortal.json';
 import Auth from '../../components/Auth';
 type Props = {
   title?: string;

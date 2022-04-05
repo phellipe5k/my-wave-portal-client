@@ -4,12 +4,14 @@
     "jsx": "preserve",
     "declarationDir": "dist",
     "baseUrl": "src",
-    "target": "es5",
     "allowJs": true,
     "skipLibCheck": true,
     "strict": false,
     "forceConsistentCasingInFileNames": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "emitDeclarationOnly": false,
+    "target": "es5",
+    "noEmit": true
   },
   "files": [
     "src/my-wave-portal-my-wave-portal.tsx"

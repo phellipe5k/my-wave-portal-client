@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "concurrently npm:build:*",
+    "build": "next build",
     "start": "webpack serve",
     "lint": "eslint src --ext js,ts,tsx",
     "test": "cross-env BABEL_ENV=test jest --passWithNoTests",
