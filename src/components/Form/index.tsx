@@ -30,15 +30,17 @@ const Form = ({ title = 'Form' }: Props) => {
         return;
       }
       const provider = new ethers.providers.Web3Provider(ethereum);
-      const signer = provider.getSigner();
-      const address = '0x194aEf5baB84A468D3f9daC20C838510e53d7128';
-      const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
-      let count = await wavePortalContract.getTotalColors();
-      setTotalVotes(count.toNumber());
       const accounts = await ethereum.request({ method: "eth_requestAccounts" });
+      
       if (accounts) {
         setCurrentAccount(accounts[0]);
         setIsAuth(true);
+        const signer = provider.getSigner();
+        const address = '0x194aEf5baB84A468D3f9daC20C838510e53d7128';
+        const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
+        let count = await wavePortalContract.getTotalColors();
+        setTotalVotes(count.toNumber());
+      
         return;
       }
       alert("No account selected!");
