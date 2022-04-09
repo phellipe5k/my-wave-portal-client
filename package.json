@@ -30,6 +30,7 @@
     "@types/react-dom": "^17.0.9",
     "@types/systemjs": "^6.1.1",
     "@types/webpack-env": "^1.16.2",
+    "dotenv": "^16.0.0",
     "ethers": "^5.5.3",
     "framer-motion": "4.1.17",
     "next": "10.2.3",

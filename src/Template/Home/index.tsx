@@ -5,6 +5,7 @@ import Form from '../../components/Form';
 import Header from '../../components/Header';
 import List from '../../components/List';
 import Main from '../../components/Main';
+import Modal from 'components/Modal';
 import SocialBadge from '../../components/SocialBadge';
 import { useEffect, useState } from 'react';
 import * as S from './style';
@@ -13,7 +14,8 @@ import BuildspaceIcon from '../../assets/images/unicorn.png'
 const Home = () => {
   console.log('rerendered!!!!!!')
     const [hoverLogin, setHoverLogin] = useState(false);
-  return (
+    
+    return (
     <Base>
     <S.Fixed>
         <SocialBadge name="github" color="black" url='https://github.com/phellipe5k' rounded icon={ '/assets/images/github.png' } />
@@ -23,7 +25,7 @@ const Home = () => {
     <S.Row>
     <S.Title>
         Do you want to <S.GradientText>see a magic?</S.GradientText>
-    <   S.Subtitle>Fill the form and get a chance to <S.GradientText>own a NFT!!</S.GradientText></S.Subtitle>
+    <   S.Subtitle>Fill the form and get a chance to <S.GradientText>own ETH!!</S.GradientText></S.Subtitle>
     </S.Title>
     <Form />
     </S.Row>

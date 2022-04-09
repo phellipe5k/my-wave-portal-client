@@ -1,11 +1,15 @@
 import * as S from './style';
 import { Input, Text, RadioGroup, Stack } from '@chakra-ui/react'
 import { Button } from 'web3-components'
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import { ethers } from 'ethers';
+import * as config from 'config';
+import * as Actions from 'Provider/Actions';
+import Context from 'Provider/Context';
 //@ts-ignore
 import abi from 'utils/contracts/wavePortal.json';
-import Auth from '../../components/Auth';
+
+import Auth from 'components/Auth';
 type Props = {
   title?: string;
 };
@@ -15,6 +19,7 @@ const Form = ({ title = 'Form' }: Props) => {
   const [currentAccount, setCurrentAccount] = useState('');  
   const [isAuth, setIsAuth] = useState(false);
   const [totalVotes, setTotalVotes] = useState(0);
+  const { data, setData } = useContext(Context);
 
   const handleChange = (field: string, value: string) => {
     setForm((v: any) => ({...v, [field]: value}))
@@ -36,8 +41,7 @@ const Form = ({ title = 'Form' }: Props) => {
         setCurrentAccount(accounts[0]);
         setIsAuth(true);
         const signer = provider.getSigner();
-        const address = '0x77083581457e3991884E640eC47A02C1D70A38fa';
-        const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
+        const wavePortalContract = new ethers.Contract(config.contract_address, abi.abi, signer);
         let count = await wavePortalContract.getTotalColors();
         setTotalVotes(count.toNumber());
       
@@ -106,7 +110,7 @@ const Form = ({ title = 'Form' }: Props) => {
             }
             const provider = new ethers.providers.Web3Provider(ethereum);
             const signer = provider.getSigner();
-            const address = '0x77083581457e3991884E640eC47A02C1D70A38fa';
+            const address = '0x58B46bA259113cB41569DAd7EAaA06Af9A478C5e';
             const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
             const populate = await wavePortalContract.registerColor(form.color);
            

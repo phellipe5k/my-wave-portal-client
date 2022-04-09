@@ -7,8 +7,13 @@ import Home from '../Template/Home'
 import Head from 'next/head';
 import GlobalStyles from '../styles/global';
 import { ChakraProvider } from '@chakra-ui/react';
+import Modal from 'components/Modal';
+import { useContext } from 'react';
+import ProfileContext from 'Provider/Context';
 
 const Index = () => {
+  const { data } = useContext(ProfileContext);
+
   return (
     <ChakraProvider>
     <Head>
@@ -24,6 +29,7 @@ const Index = () => {
       <link rel="manifest" href="/manifest.json" />
     </Head>
     <GlobalStyles />
+    { (data.globalState.status || data.globalState.message) && <Modal status={ data.globalState.status } /> }
     <Home />
   </ ChakraProvider>
   );

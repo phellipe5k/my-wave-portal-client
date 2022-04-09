@@ -2,10 +2,12 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 import GlobalStyles from '../styles/global';
 import { ChakraProvider } from '@chakra-ui/react';
+import Provider from 'Provider/Provider';
 
 const myApp = ({ Component, pageProps }: AppProps) => {
   return (
-    <ChakraProvider>
+    <Provider>
+      <ChakraProvider>
       <Head>
         <title>WavePortal</title>
         <link
@@ -24,6 +26,7 @@ const myApp = ({ Component, pageProps }: AppProps) => {
       <GlobalStyles />
       <Component {...pageProps} />
     </ ChakraProvider>
+    </Provider>
   );
 };
 

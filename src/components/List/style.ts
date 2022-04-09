@@ -46,12 +46,12 @@ export const Item = styled.div`
       text-align: right;
       vertical-align: 10px;
       height: 100%;
-      background-color: ${ handleColor(color) };
+      background: linear-gradient(to right, ${ handleColor(color) }, black);
       width: ${percentage ? percentage : '0px'};
       top: 0;
       left: 0;
       border-radius: 8px;
-      z-index: -1;
+      z-index: 1;
       position: absolute;
     }
   `}
@@ -60,10 +60,12 @@ export const Item = styled.div`
 export const Name = styled.h4`
   font-weight: bold;
   color: white;
+  position: relative;
+  z-index: 2;
 
 `;
 
 export const Number = styled.div`
   font-weight: 600;
-  color: black;
+  color: white;
 `;

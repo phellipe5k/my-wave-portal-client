@@ -1,7 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import * as Chakra from '@chakra-ui/react';
 import * as S from './style';
 import { Image } from '@chakra-ui/react';
+import * as Actions from 'Provider/Actions';
+import ProfileContext from 'Provider/Context';
 
 type Props = {
   children?: any;
@@ -11,6 +13,7 @@ type Props = {
 const Auth = ({ children }: Props) => {
   const [currentAccount, setCurrentAccount] = useState('');  
   const [hoverLogin, setHoverLogin] = useState(false);
+  const { setData } = useContext(ProfileContext);
 
   const checkWalletAuth = async () => {
     // @ts-ignore
@@ -25,7 +28,7 @@ const Auth = ({ children }: Props) => {
       }
       const accounts = await ethereum.request({ method: "eth_accounts" });
       if (accounts.length == 0 ) {
-        console.log('Not connected to metamask');
+        Actions.setAlert({ status: 'warning', message: 'Not connected to metamask'}, setData)
         return;
       }
       setCurrentAccount(accounts[0]);
