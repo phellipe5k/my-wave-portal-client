@@ -19,9 +19,10 @@ const Form = ({ title = 'Form' }: Props) => {
   const [currentAccount, setCurrentAccount] = useState('');  
   const [isAuth, setIsAuth] = useState(false);
   const [totalVotes, setTotalVotes] = useState(0);
+  const [wavePortalContract, setWavePortalContract] = useState(null);
   const { data, setData } = useContext(Context);
   let config = {
-    contract_address: '0x58B46bA259113cB41569DAd7EAaA06Af9A478C5e'
+    contract_address: '0x0A2dcEe00ed7df9236Da82EE4BbfAe2E2515Bc17'
   }
 
   const handleChange = (field: string, value: string) => {
@@ -46,6 +47,7 @@ const Form = ({ title = 'Form' }: Props) => {
         const signer = provider.getSigner();
         console.log(config.contract_address, 'sssssssss')
         const wavePortalContract = new ethers.Contract(config.contract_address, abi.abi, signer);
+        setWavePortalContract(wavePortalContract);
         let count = await wavePortalContract.getTotalColors();
         setTotalVotes(count.toNumber());
         const colors = await wavePortalContract.getColors();
@@ -81,7 +83,28 @@ const Form = ({ title = 'Form' }: Props) => {
   useEffect(() => {
     isWalletInMeta();
     connectWallet();
+    
   }, [])
+
+  useEffect(() => {
+  
+    const onNewVote = async (from, timestamp, color) => {
+      console.log('newVote', color, data);
+      setData(v => ({...v, colors: [...v.colors, color]}));
+      let count = await wavePortalContract.getTotalColors();
+      setTotalVotes(count.toNumber());
+    }
+    if (wavePortalContract) {  
+      console.log('CONTRACT EXISTS')
+      wavePortalContract.on("NewVote", onNewVote);
+      
+      return () => {
+        if (wavePortalContract) {
+          wavePortalContract.off("NewVote", onNewVote);
+        }
+      };
+    }
+  }, [wavePortalContract]);
 
   return (
     <S.Container>
@@ -117,15 +140,11 @@ const Form = ({ title = 'Form' }: Props) => {
               }
               const provider = new ethers.providers.Web3Provider(ethereum);
               const signer = provider.getSigner();
-              const address = '0x58B46bA259113cB41569DAd7EAaA06Af9A478C5e';
+              const address = '0x0A2dcEe00ed7df9236Da82EE4BbfAe2E2515Bc17';
               const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
-              const populate = await wavePortalContract.registerColor(form.color);
+              const populate = await wavePortalContract.registerColor(form.color, { gasLimit: 300000 });
              
               await populate.wait();
-            
-              let count = await wavePortalContract.getTotalColors();
-              setTotalVotes(count.toNumber());
-              let colors = await wavePortalContract.getColors();
             } catch(err) {
               Actions.setAlert({ status: 'error', message: err.message },setData)
             }

@@ -23,7 +23,7 @@ const Modal = ({ status = 'success' }: Props) => {
   }
 
   useEffect(() => {
-    setTimeout(() => setData({...data, globalState: {...data.globalState, status: '', message: ''}}), 5000)
+    setTimeout(() => setData((data) => ({...data, globalState: {...data.globalState, status: '', message: ''}})), 5000)
   }, [])
   return (
     <S.Container>
