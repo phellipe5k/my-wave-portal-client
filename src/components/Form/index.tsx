@@ -22,7 +22,7 @@ const Form = ({ title = 'Form' }: Props) => {
   const [wavePortalContract, setWavePortalContract] = useState(null);
   const { data, setData } = useContext(Context);
   let config = {
-    contract_address: '0x0A2dcEe00ed7df9236Da82EE4BbfAe2E2515Bc17'
+    contract_address: '0x5040984edf658a82912345D52d43dD8890525248'
   }
 
   const handleChange = (field: string, value: string) => {
@@ -140,7 +140,7 @@ const Form = ({ title = 'Form' }: Props) => {
               }
               const provider = new ethers.providers.Web3Provider(ethereum);
               const signer = provider.getSigner();
-              const address = '0x0A2dcEe00ed7df9236Da82EE4BbfAe2E2515Bc17';
+              const address = '0x5040984edf658a82912345D52d43dD8890525248';
               const wavePortalContract = new ethers.Contract(address, abi.abi, signer);
               const populate = await wavePortalContract.registerColor(form.color, { gasLimit: 300000 });
              
